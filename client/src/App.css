@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mukta&display=swap');
 /* a{
     color: black !important;
 } */
@@ -6,7 +7,6 @@
 /* .brand-logo,h2{
     font-family: 'Grand Hotel', cursive;
 } */
-
 /* toast */
 #toast-container{
     bottom: 30px !important;
@@ -27,7 +27,7 @@
     width:100%;
 }
 *{
-    font-family: sans-serif;
+    font-family: 'Mukta', sans-serif;
     box-sizing: border-box;
     scroll-behavior: smooth;
     margin: 0;
@@ -100,32 +100,6 @@
   position: sticky;
   bottom: 0;
   left: 0;
-}
-/* -----------------------------------------------Profile Page Section --------------------------- */
-.profilePage{
-  display: flex;
-  flex-direction: row;
-  flex-direction: row;
-  padding: 5px 40px;
-  /* border-bottom: 1px solid #cacaca; */
-}
-.ProfilePic{
-  object-fit: cover;
-  width: 160px;
-  height: 160px;
-  border-radius: 80px;
-}
-.Gallary{
-   border-top: 1px solid #cacaca;
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 5px;
-}
-.item{
-  object-fit: cover;
-  width: 250px;
-  height: 250px;
-  margin: 10px;
 }
 /* ---------------------------------------------------Home js CSS ------------------------------- */
 

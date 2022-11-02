@@ -1,77 +1,158 @@
-.gallery{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-}
-.item{
-  width:30%;
-  object-fit: cover;
-}
 .mainDiv{
   max-width: 800px;
   margin: 80px auto;
 }
 .profilePage{
   display: flex;
-  flex-direction: row;
-  flex-direction: row;
-  padding: 5px 40px;
+  padding: 5px 10%;
   /* border-bottom: 1px solid #cacaca; */
 }
 .ProfilePic{
   object-fit: cover;
-  width: 160px;
-  height: 160px;
+  width: 120px;
+  height: 120px;
   border-radius: 80px;
 }
+.EditProfileBtn{
+  font-size :12px;
+  padding:5px 15px;
+  border:1px #cacaca solid;
+  background-color: transparent;
+  border-radius: 5px;
+  font-weight:500;
+  cursor: pointer;
+}
 .Gallary{
-   border-top: 1px solid #cacaca;
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 5px;
+  border-top: 1px solid #cacaca;
+ display: flex;
+ flex-wrap: wrap;
+ margin-top: 5px;
 }
-/* .item{
+.item{
+ width: 245px;
+ height: 245px;
+ margin: 10px;
+}
+.item > img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  width: 250px;
-  height: 250px;
-  margin: 10px;
-} */
-.ContentContainer{
-  padding: 20px;
-  padding-left: 60px;
 }
-@media  only screen and (max-width : 800px) {
+.ContentContainer{
+  padding: 2%;
+  width:45%;
+  margin-left:8%;
+}
+.itemDetailContainer{
+  font-size: 14px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.308);
+  position: absolute;
+  height: 245px;
+  width: 245px;
+  padding: 7% 5%;
+  opacity: 0;
+}
+.LikesCount{
+  margin-right: 20px;
+}
+.itemDetailContainer:hover{
+   opacity: 1;
+}
+@media  only screen and (max-width : 700px) {
+  .profilePage{
+    padding: 10px 20px;
+  }
   .item{
-    margin: 7.5px;
-    width: 120px;
-    height: 120px;
+    margin: 1.5px;
+    width: 126px;
+    height: 126px;
     object-fit: cover;
   }
-  .profilePage{
-    padding: 0px 10px;
+  .Gallary{
+    padding: 10px;
+    padding-top: 2px;
   }
   .ProfilePic{
     width: 80px;
     height: 80px;
   }
   .ContentContainer{
-    padding: 5px;
-    padding-left: 20px;
+    padding: 0px;
+    width:75%;
+    margin-left:8%;
+  }
+  .EditProfileBtn{
+    font-size: 9px;
+    padding: 7px;
+  }
+  .itemDetailContainer{
+    padding: 13% 4.5%;
+    margin: 1px;
+    width: 125px;
+    height: 125px;
   }
 }
-@media  only screen and (max-width : 350px){
+@media  only screen and (max-width : 900px) {
   .item{
-    margin: 5px;
-    width: 140px;
-    height: 140px;
+    margin: 7px;
+    width: 230px;
+    height: 230px;
     object-fit: cover;
   }
+  .Gallary{
+    padding: 10px;
+    padding-top: 2px;
+  }
+  .ProfilePic{
+    width: 80px;
+    height: 80px;
+  }
+  .ContentContainer{
+    padding: 0px;
+    width:45%;
+    margin-left:8%;
+  }
+  .EditProfileBtn{
+    font-size: 9px;
+    padding: 7px;
+  }
+  .itemDetailContainer{
+    padding: 13% 4.5%;
+    margin: 1px;
+    width: 125px;
+    height: 125px;
+  }
 }
-@media  only screen and (max-width : 300px){
+@media  only screen and (max-width : 450px){
+  .profilePage{
+    padding: 10px;
+  }
   .item{
-    margin: 5px 25px;
-    width: 250px;
-    height: 250px;
+    margin: 2px;
+    width: 125px;
+    height: 125px;
     object-fit: cover;
+  }
+  .ContentContainer{
+    padding: 0px;
+    width:60%;
+    margin-left:8%;
+  }
+  .itemDetailContainer{
+    padding: 13% 4%;
+    width: 125px;
+    height: 125px;
+  }
+}
+@media  only screen and (max-width : 360px){
+  .item{
+    margin: 1.2px;
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+  }
+  .itemDetailContainer{
+    display: none;
   }
 }

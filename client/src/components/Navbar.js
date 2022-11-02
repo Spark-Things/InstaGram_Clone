@@ -8,6 +8,13 @@ import home from '../icons/hut.png'
 import M from 'materialize-css';
 
 const Navbar = () => {
+    const getUserID = JSON.parse(localStorage.getItem("user"));
+    // console.log('====================================');
+    // console.log(getUserID.pic);
+    // console.log('====================================');
+
+    
+
     const searchModal=useRef(null); 
     const [ state, dispatch ] = useContext(UserContext);
     const [userDetails,setUserDetails] =useState([]);
@@ -27,7 +34,17 @@ const Navbar = () => {
                 <li key="1"><i data-target="modal1" className="large material-icons modal-trigger icons"  style={{color:"black"}}>search</i></li>
                 <li key="2"><Link to="/myfollowingpost"><img src={fav} className="icons" /></Link></li>
                 <li key="3"><Link to="/create"><img src={tab} className="icons" /></Link></li>
-                <li key="4"><Link to="/profile"><img src={user} className="icons" /></Link></li>
+                <li key="4"><Link to="/profile">
+                { getUserID.pic ?
+                   <img src={getUserID.pic} className="icons"
+                        style={{"borderRadius":"25px",
+                                 "width":"30px",
+                                "height":"30px"}} 
+                   /> 
+                   :
+                    <img src={user} className="icons" />
+                }
+                </Link></li>
                 <li key="5">
                 <button className='logOutbtn'
                     onClick={()=>{
@@ -52,7 +69,15 @@ const Navbar = () => {
                 <li key="2"><i data-target="modal1" className="large material-icons modal-trigger icons"  style={{color:"black"}}>search</i></li>
                 <li key="3"><Link to="/create"><img src={tab} className="icons" /></Link></li>
                 <li key="4"><Link to="/myfollowingpost"><img src={fav} className="icons" /></Link></li>
-                <li key="5"><Link to="/profile"><img src={user} className="icons" /></Link></li>
+                <li key="5"><Link to="/profile"> { getUserID.pic ?
+                   <img src={getUserID.pic} className="icons"
+                        style={{"borderRadius":"25px",
+                                 "width":"30px",
+                                "height":"30px"}} 
+                   /> 
+                   :
+                    <img src={user} className="icons" />
+                }</Link></li>
                 </div>
                 </>
                 ]
