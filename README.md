@@ -1,6 +1,6 @@
 
-# Mitron👋 ,Ye website👨‍💻 "INSTAGAM" namak ek social media platfrom 🎮 ki copy hai Jisko Zuck bhaiya ne 🤑 3000 cr me Kharida Tha.
-# Upload Kareli aa 👆 file ma tamne niche ⬇️ mujabh na features jova Madse 👍
+#### Mitron👋 ,Ye website👨‍💻 "INSTAGAM" namak ek social media platfrom 🎮 ki copy hai Jisko Zuck bhaiya ne 🤑 3000 cr me Kharida Tha.
+##### Upload Kareli aa 👆 file ma tamne niche ⬇️ mujabh na features jova Madse 👍
   1. SIGN UP ✖️📶
   2. SIGN IN  🚥
   3. Password and Email validation 📧
@@ -14,7 +14,7 @@
   11.Tame upload karela photo delete pan kari sako cho 🤓🤥🤡
   
   
-# bas biju to have Application banvvanu vcharyu chhe tena mate thodo time joise.
+##### bas biju to have Application banvvanu vcharyu chhe tena mate thodo time joise.
 
 #Aa Vachyu hoyy to ane gamyu hoyy k naa gamyu hoyy ek var jarur mari aa website chakasjo niche link muku chu..
 
