@@ -166,6 +166,20 @@ router.get('/allpost', requireLogin, (req, res) => {
         });
 });
 
+router.get('/allpost/:postID',requireLogin,(req,res) => {
+    Post.findOne({_id: req.params.postID})
+    .populate("postedBy", "_id name pic")
+    .populate("comments.postedBy", "_id name pic")
+    .exec((err,post)=>{
+        if(err){
+            return res.json({error : err});
+        }
+        if(post._id.toString() === req.params.postID.toString()){
+           return res.json(post);
+        }
+    })
+});
+
 router.get('/getsubpost', requireLogin, (req, res) => {
     //if posted by in following
     Post.find({ postedBy: { $in: req.user.following } })
@@ -249,14 +263,14 @@ router.put('/unlike', requireLogin, (req, res) => {
 router.put('/comment', requireLogin, (req, res) => {
     const comment = {
         text: req.body.text,
-        postedBy: req.user._id
+        postedBy: req.user._id,
     }
     Post.findByIdAndUpdate(req.body.postId, {
         $push: { comments: comment }
     }, {
         new: true
-    }).populate("comments.postedBy", "_id name")
-        .populate("postedBy", "_id name")
+    }).populate("comments.postedBy", "_id name pic")
+        .populate("postedBy", "_id name pic")
         .exec((err, result) => {
             if (err) {
                 return res.status(422).json({ error: err })

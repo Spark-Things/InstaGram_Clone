@@ -13,6 +13,7 @@ import Reset from './components/screens/Reset';
 import NewPassword from './components/screens/NewPassword';
 import SubscribedUserPost from './components/screens/SubscribedUserpost';
 import {reducer,initialState} from './reducers/userReducer';
+import PostDetail from './components/models/PostDetail';
 
 
 export const UserContext=createContext();
@@ -48,6 +49,7 @@ const Routing=()=>{
     <Route path="/myfollowingpost" element={<SubscribedUserPost/>} />
     <Route exact path="/reset" element={<Reset/>} />
     <Route path="/reset/:token" element={<NewPassword/>} />
+    <Route path="/post" element={<PostDetail/>} />
 
   </Routes>
   );
@@ -61,7 +63,7 @@ function App() {
   return (
     <UserContext.Provider value={[state,dispatch]}>
       <BrowserRouter>
-        <Navbar />
+        {/* <Navbar /> */}
         <Routing />
       </BrowserRouter>
     </UserContext.Provider>
