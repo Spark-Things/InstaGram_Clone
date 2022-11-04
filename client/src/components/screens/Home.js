@@ -3,13 +3,14 @@ import "./home.css";
 import { UserContext } from "../../App";
 import { Link } from "react-router-dom";
 import PostDetail from "../models/PostDetail";
+import close from '../../icons/close.png';
 
 const Home = () => {
   const [data, setData] = useState([]);
   const [state, dispatch] = useContext(UserContext);
   const [postId, setpostId] = useState();
   const [Open, setOpen] = useState(false);
-
+     
   
   // var open = true;
   useEffect(() => {
@@ -132,7 +133,18 @@ const Home = () => {
   console.log(data);
   return (
     <>
-     { Open ? <PostDetail postId={postId}/> : 
+       { Open ? <div>
+                <PostDetail postId={postId}/>
+                <button className='cancelbtn'
+                  onClick={() => setOpen(false)}
+                >
+               <img  src={close} 
+                    style={{"width": "30px",
+                   "height": "30px"}}
+               
+               />
+               </button>
+                </div> :
       <div className="cntiner">
         {data.map((item) => {
           return (
@@ -199,7 +211,7 @@ const Home = () => {
                   {item.comments.length > 1 ? (
                          <span style={{ color: "grey" }} onClick={() => {
                             setpostId(item._id);
-                            setOpen(true);
+                            setOpen(!Open);
                          }}>
                       view all {item.comments.length} comments{" "}
                     </span>
@@ -235,7 +247,7 @@ const Home = () => {
         })}
   
       </div>
-}
+      } 
     </>
   );
 };

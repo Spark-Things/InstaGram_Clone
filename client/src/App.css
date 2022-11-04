@@ -70,7 +70,7 @@
     margin-top: 80px;
  }
  .logOutbtn{
-  font-weight: 500;
+   font-weight: 500;
    padding: 10px;
    width: 100%;
    text-transform: capitalize;
@@ -124,6 +124,16 @@
   height: 30px;
   border-radius: 25px;
 
+}
+.cancelbtn{
+  cursor: pointer;
+  border: 0;
+  top: 4%;
+  right: 9%;
+  padding: 5px;
+  background-color: transparent;
+  float: left;
+  position: absolute;
 }
 .deleteBTn{
   float: right;

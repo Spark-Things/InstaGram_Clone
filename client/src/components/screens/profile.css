@@ -53,6 +53,17 @@
   padding: 7% 5%;
   opacity: 0;
 }
+.FUbtn{
+  font-size: 12px;
+  color: white;
+  margin: 0px 2%;
+  width: 100%;
+  font-weight: 600;
+  background-color: rgb(90, 156, 255);
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 3px;
+}
 .LikesCount{
   margin-right: 20px;
 }

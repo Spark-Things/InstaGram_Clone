@@ -19,6 +19,7 @@
    font-size: 18px;
  }
  .LoginBtn{
+  cursor: pointer;
    padding: 10px;
    min-width: 25%;
    margin: auto;
