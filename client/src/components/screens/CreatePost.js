@@ -61,9 +61,9 @@ const CreatePost = () => {
             fetchPhoto();
         }, [image]);
         
-          console.log(image);
-          console.log(url);
-          console.log(preview);
+        //   console.log(image);
+        //   console.log(url);
+        //   console.log(preview);
     return (
         <div className='profiletab cntiner'>
               <img alt='image preview' className='previewImage' src={preview ? preview : photo} draggable/>
@@ -73,8 +73,8 @@ const CreatePost = () => {
             </div>
            <div style={{padding:"10px"}}>
             <div>
-             <label className='label'>Title</label>
-             <input className='input-field' type="text" placeholder='Add Caption Here'
+             <label className='label'>Name</label>
+             <input className='input-field' type="text" placeholder='Add Name Here'
              value={title} 
              onChange={(e)=>setTitle(e.target.value)}/>
            </div>
