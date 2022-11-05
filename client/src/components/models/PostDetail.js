@@ -20,11 +20,14 @@ function PostDetail({postId}){
       },
     }).then(res => res.json())
     .then(result => {
+      console.log(result);
       setPostData(result);
     })
    }, [])
 
   return (
+    <>
+    { postData.postedBy ? 
             <div className='PostDetailContainer'>
               <div className='model'>
               <div className='PostContainer'> 
@@ -32,11 +35,11 @@ function PostDetail({postId}){
               </div>
 
               <div className='detailContainer'>
-                 <div className='header'>
+                   <div className='header'>
                     <img src={postData.postedBy.pic} style={{"width":"40px","height":"40px","borderRadius":"50%"}}  alt='dp'/>
                      <span className='postAuthor'>{postData.postedBy.name}</span>
-                    <button className='moreBtn'><img src={more} style={{"width":"20px","height":"20px"}}></img></button> 
-                 </div>
+                    <button className='moreBtn'><img src={more} style={{"width":"20px","height":"20px"}}></img></button></div>
+              
                  <div className='postbody'>
                      <div className='captionContainer'>
                      <img src={postData.postedBy.pic} alt=''style={{"width":"35px","height":"35px","borderRadius":"50%"}} ></img>
@@ -54,8 +57,7 @@ function PostDetail({postId}){
                           )
                         }) 
                 }
-                    
-                 </div>
+                 </div> 
                  <div className='footer'>
                      <div style={{"display":"flex",
                                   "alignItems":"center",
@@ -83,7 +85,8 @@ function PostDetail({postId}){
                
                />
                </button> */}
-            </div>               
+            </div>     : <span>Loading....</span>     }
+            </>     
   )
 }
 

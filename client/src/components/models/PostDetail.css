@@ -12,6 +12,7 @@
   height: 100vh;
   padding: 2% 13%;
   z-index: 100;
+  top: 0;
 }
 .model{
     display: flex;
