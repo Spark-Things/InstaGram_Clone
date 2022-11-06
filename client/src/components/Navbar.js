@@ -9,23 +9,30 @@ import M from 'materialize-css';
 
 const Navbar = () => {
     const getUserID = JSON.parse(localStorage.getItem("user"));
-    // console.log('====================================');
-    // console.log(getUserID.pic);
-    // console.log('====================================');
-
-    
-
     const searchModal=useRef(null); 
     const [ state, dispatch ] = useContext(UserContext);
     const [userDetails,setUserDetails] =useState([]);
-    const [search,setSearch]=useState(userDetails);
+    const [search,setSearch]=useState();
 
     const navigate=useNavigate();
     
     useEffect(() => {
-        M.Modal.init(searchModal.current)        
+        M.Modal.init(searchModal.current)     
     }, []);
 
+     
+    const getAllusers = () => {
+        fetch("/allUsers", {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("jwt"),
+            },
+          }).then(res=>res.json())
+          .then(results=>{
+            //   console.log(results);
+              setUserDetails(results);
+          })
+    }
+    getAllusers();
     const renderList = () => {
         if (state) {
             return [
@@ -90,7 +97,7 @@ const Navbar = () => {
     }
 
     const fetchUsers = (query)=>{
-        setSearch(query)
+        setSearch(query)  
         fetch('/search-users',{
           method:"post",
           headers:{
@@ -102,7 +109,7 @@ const Navbar = () => {
         }).then(res=>res.json())
         .then(results=>{
             console.log(results);
-            setUserDetails(results.user);
+            setUserDetails(results);
         })
     }
     return (
@@ -114,28 +121,52 @@ const Navbar = () => {
                         {renderList()}
                     </ul>
                 </div>
-                <div id="modal1" className="modal" ref={searchModal} style={{color:"black"}}>
-                    <div className="modal-content" style={{padding:"10px"}}>
-                    <input
-                        type="text"
-                        placeholder="Search Users"
-                        value={search}
-                        onChange={(e) => fetchUsers(e.target.value)}
-                    />
-                   <ul className="collection">
+            </nav>
+            <div className="Searchmodal" ref={searchModal} style={{color:"black"}}>
+
+                      <div className='modalContent'>
+                        <div style={{"borderBottom":"1px solid #cacaca"}}>
+                             <h5 style={{margin:"0px","fontWeight":"500"}}>Search</h5>
+                             <form >
+                             <input  
+                                 id="searchbar" type="text" placeholder='Search ..' autoFocus 
+                                 value={search}
+                                 onChange={(e)=> fetchUsers(e.target.value)}
+                                 />
+                             </form>
+                        
+                         </div>
+                         <div className='userDisplayContainer'>
+                             {userDetails.map(item=>
+                             {
+                                return(
+                                 <div className='userContainer'>
+                                       <img src={item.pic}  style={{"width":"40px","height":"40px","borderRadius":"50%"}} />
+                                       <span className="userNames">{item.name}</span>
+                                 </div>
+                                // return <Link to={item._id!== state._id ? "/profile/"+item._id : '/profile'} onClick={()=>{
+                                // // M.modal.getInstance(searchModal.current).close();
+                                // setSearch('');
+                                // }}> 
+                             
+                                // </Link>
+                             )}
+                             )}
+                         </div>
+                      </div>
+                   {/* <ul className="collection">
                         {userDetails.map(item=>{
                             return <Link to={item._id!== state._id ? "/profile/"+item._id : '/profile'} onClick={()=>{
                                 M.modal.getInstance(searchModal.current).close();
                                 setSearch('');
                             }}> <li className="collection-item">{item.email}</li></Link>
                         })}
-                    </ul>
+                    </ul> */}
                     </div>
-                    <div className="modal-footer">
+                    {/* <div className="modal-footer">
                     <button  className="modal-close waves-effect waves-green btn-flat" onClick={()=>setSearch('')}>Close</button>
-                    </div>
-                </div>
-            </nav>
+                    </div> */}
+                {/* </div> */}
         </div>
     )
 }
