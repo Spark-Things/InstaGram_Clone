@@ -34,9 +34,9 @@ const transporter = nodemailer.createTransport(sendgridTransport({
 // });
 
 router.post('/signup', (req, res) => {
-    // console.log(req.body);
-    const { name, email, password, pic } = req.body;
-    if (!email || !password || !name) {
+    console.log(req.body);
+    const { name, email, password, pic,username } = req.body;
+    if (!email || !password || !name || !username) {
         return res.status(422).json({ error: "please add all fields" }); // we don't want to proceed further so use return
     }
     // res.json({
@@ -53,7 +53,8 @@ router.post('/signup', (req, res) => {
                         email,
                         password: hashedpassword,
                         name,
-                        pic
+                        pic,
+                        username
                     });
                     user.save()
                         .then(user => {
@@ -155,7 +156,7 @@ router.post('/new-password',(req,res)=>{
 
 router.get('/allpost', requireLogin, (req, res) => {
     Post.find()
-        .populate("postedBy", "_id name pic")
+        .populate("postedBy", "_id name pic username")
         .populate("comments.postedBy", "_id name ")
         .sort('-createdAt')//osr in descending order
         .then(posts => {

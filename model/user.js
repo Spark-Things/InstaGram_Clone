@@ -20,6 +20,10 @@ const userSchema=new mongoose.Schema({
         type:String,
         default:"https://res.cloudinary.com/renishclould/image/upload/v1637058651/default%20profile/default_profile_dxqn9p.jpg"
     },
+    username:{
+        type:String,
+        require:true
+    },
     followers:[{type:ObjectId,ref:"User"}],
     following:[{type:ObjectId,ref:"User"}]
 

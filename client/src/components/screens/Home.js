@@ -148,8 +148,10 @@ const Home = () => {
       <div className="cntiner">
         {data.map((item) => {
           return (
-            <div className="card home-card" key={item._id}>
+              <div className="card home-card" key={item._id}>
               <div className="Post-top_Section">
+                { item.postedBy ?
+                <>
                 <img src={item.postedBy.pic} className="HpPic" />
                 <span>
                   <Link
@@ -159,7 +161,7 @@ const Home = () => {
                         : "/profile"
                     }
                   >
-                    {item.postedBy.name}
+                    {item.postedBy.username ? item.postedBy.username : item.postedBy.name}
                   </Link>
                   {item.postedBy._id == state._id && (
                     <i
@@ -171,6 +173,9 @@ const Home = () => {
                     </i>
                   )}
                 </span>
+                </>
+                 : <h3>Loading..</h3>
+                }
               </div>
               <div className="card-image">
                 <img src={item.photo} alt="image" />
@@ -203,7 +208,7 @@ const Home = () => {
                 <span className="likes">{item.likes.length} likes</span>
                 {/* <h6>{item.postedBy.name} : {item.title}</h6> */}
                 <p className="caption">
-                  <span className="captioner">{item.postedBy.name}</span>
+                   <span className="captioner">{item.postedBy.name}</span>
                   {item.body}
                 </p>
 
@@ -242,7 +247,7 @@ const Home = () => {
                   <button>Post</button>
                 </form>
               </div>
-            </div>
+            </div> 
           );
         })}
   

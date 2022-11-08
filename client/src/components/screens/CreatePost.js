@@ -24,8 +24,8 @@ const CreatePost = () => {
         })
         .then(res=>res.json())
         .then(data=>{
-            setUrl(data.url);
             setPreview(data.url);
+            setUrl(data.url);
         })
         .catch(err=>{
             console.log(err);
