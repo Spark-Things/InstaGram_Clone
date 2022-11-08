@@ -95,7 +95,7 @@
 /* -------------------------------------------------- Search Modal -----------------------------------  */
 .Searchmodal{
   background-color: rgba(0, 0, 0, 0.51);
-  position: absolute;
+  position: fixed;
   top: 0;
   width: 100%;
   height: 100vh;
@@ -267,6 +267,9 @@
     display: block;
   }
   #toast-container{
-     width: 100% !important;
+     width: 100% !important;  
+  }
+  .Searchmodal{
+    padding: 15%;
   }
 }
