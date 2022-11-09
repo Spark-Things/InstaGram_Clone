@@ -7,6 +7,7 @@ import user from '../../user.png';
 const Signup = () => {
     const navigate = useNavigate();
     const [name, setName] = useState("");
+    const [Username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [url, setUrl] = useState(undefined);
@@ -50,7 +51,8 @@ const Signup = () => {
                 name,
                 password,
                 email,
-                pic:url
+                pic:url,
+                username: Username
             })
         }).then(res => res.json())
             .then(data => {
@@ -58,7 +60,8 @@ const Signup = () => {
                     M.toast({ html: data.error, classes: "#c62828 red daeken-3" });
                 } else {
                     M.toast({ html: data.message, classes: "#43a047 green darken-1" })
-                    navigate('/');
+                    // localStorage.setItem("user",JSON.stringify(data.Username));
+                    navigate('/signin');
                 }
             }).catch(err => {
                 console.log(err);
@@ -90,6 +93,11 @@ const Signup = () => {
               <div>
                 <label>Username</label>
                 <input className='input-field' type="text" placeholder='ItsSpark69' 
+                value={Username}  onChange={(e) => setUsername(e.target.value)}/>
+            </div>
+            <div>
+                <label>Full Name</label>
+                <input className='input-field' type="text" placeholder='Tony Strak' 
                 value={name}  onChange={(e) => setName(e.target.value)}/>
             </div>
          <div>
