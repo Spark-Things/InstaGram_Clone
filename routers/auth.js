@@ -92,8 +92,8 @@ router.post('/signin', (req, res) => {
                     if (doMatch) {
                         // res.send({message:"successfully signed in"})
                         const token = jwt.sign({ _id: savedUser._id }, JWT_SECRET)
-                        const { _id, name, email, followers, following, pic } = savedUser
-                        res.json({ token, user: { _id, name, email, followers, following, pic } }); //token:token key and value both are equal
+                        const { _id, name, email, followers, following, pic,username } = savedUser
+                        res.json({ token, user: { _id, name, email, followers, following, pic,username } }); //token:token key and value both are equal
                     } else {
                         return res.status(422).json({ error: "Invalid Email or password" })
                     }
@@ -184,7 +184,7 @@ router.get('/allpost/:postID',requireLogin,(req,res) => {
 router.get('/getsubpost', requireLogin, (req, res) => {
     //if posted by in following
     Post.find({ postedBy: { $in: req.user.following } })
-        .populate("postedBy", "_id name pic")
+        .populate("postedBy", "_id name pic username")
         .populate("comments.postedBy", "_id name")
         .sort('-createdAt')//osr in descending order
         .then(posts => {

@@ -131,11 +131,11 @@ const UserProfile = () => {
                   <span
                     style={{
                       fontWeight: "500",
-                      fontSize: "20px",
+                      fontSize: "16px",
                       minWidth: "47%",
                     }}
                   >
-                    {userProfile.user.name}
+                    {userProfile.user.username ? userProfile.user.username : userProfile.user.name }
                     {/* <img src={verified} style={{"width":"20px","height":"20px","marginLeft":"5px"}}/> */}
                   </span>
                   {showfollow ? (
@@ -168,8 +168,8 @@ const UserProfile = () => {
                     ></img>
                   </button>
                 </div>
-                <span style={{ fontSize: "12px" }}>
-                    {userProfile.user.email}
+                <span style={{ fontSize: "14px" }}>
+                    {userProfile.user.name}
                   </span>
                 <div
                   style={{

@@ -60,8 +60,8 @@ const Signup = () => {
                     M.toast({ html: data.error, classes: "#c62828 red daeken-3" });
                 } else {
                     M.toast({ html: data.message, classes: "#43a047 green darken-1" })
-                    localStorage.setItem("user",Username);
-                    navigate('/');
+                    // localStorage.setItem("user",JSON.stringify(data.Username));
+                    navigate('/signin');
                 }
             }).catch(err => {
                 console.log(err);

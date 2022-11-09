@@ -133,7 +133,7 @@ const Home = () => {
   console.log(data);
   return (
     <>
-       { Open ? <div>
+    {data ? <>   { Open ? <div>
                 <PostDetail postId={postId}/>
                 <button className='cancelbtn'
                   onClick={() => setOpen(false)}
@@ -241,6 +241,7 @@ const Home = () => {
                   onSubmit={(e) => {
                     e.preventDefault();
                     makeComment(e.target[0].value, item._id);
+                    e.target[0].value = null; 
                   }}
                 >
                   <input type="text" placeholder="add a comment" />
@@ -252,7 +253,8 @@ const Home = () => {
         })}
   
       </div>
-      } 
+      } </>
+      : <span>Loading...</span> }
     </>
   );
 };

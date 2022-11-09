@@ -110,7 +110,7 @@ const Profile = () => {
                     minWidth: "47%",
                   }}
                 >
-                  {state ? state.name : "Loading.."}
+                  {state ? state.username : "Loading.."}
                   {/* <img src={verified} style={{"width":"20px","height":"20px","marginLeft":"5px"}}/> */}
                 </span>
                 <button className="EditProfileBtn">Edit Profile</button>
@@ -129,7 +129,7 @@ const Profile = () => {
                 </button>
               </div>
               <span style={{ fontSize: "12px" }}>
-                {state ? state.email : "Loading.."}
+                {state ? state.name : "Loading.."}
               </span>
               <div
                 style={{

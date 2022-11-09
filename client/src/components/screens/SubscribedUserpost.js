@@ -124,7 +124,7 @@ const SubscribedUserPost = () => {
                            <div className='Post-top_Section'>     
                                 <img src={item.postedBy.pic} className="HpPic"/>
                                <span>
-                                   <Link to={ item.postedBy._id !== state._id ? "/profile/"+item.postedBy._id : "/profile"}>{item.postedBy.name}</Link>
+                                   <Link to={ item.postedBy._id !== state._id ? "/profile/"+item.postedBy._id : "/profile"}>{item.postedBy.username}</Link>
                                     {item.postedBy._id == state._id
                                         && <i className="material-icons deleteBTn" 
                                         style={{float: "right"}}
