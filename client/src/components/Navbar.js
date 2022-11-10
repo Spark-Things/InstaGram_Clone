@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { UserContext } from "../App";
+import { UserContext } from "../App"; 
 import tab from "../icons/tab.png";
 import user from "../icons/user.png";
 import fav from "../icons/fav.png";
@@ -12,26 +12,11 @@ const Navbar = () => {
   const getUserID = JSON.parse(localStorage.getItem("user"));
   const searchModal = useRef(null);
   const [state, dispatch] = useContext(UserContext);
-  const [userDetails, setUserDetails] = useState([]);
-  const [search, setSearch] = useState();
   const [isOpen, setIsopen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     M.Modal.init(searchModal.current);
-    const getAllusers = () => {
-      fetch("/allUsers", {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("jwt"),
-        },
-      })
-        .then((res) => res.json())
-        .then((results) => {
-          //   console.log(results);
-          setUserDetails(results);
-        });
-    };
-    getAllusers();
   }, []);
 
   const renderList = () => {
@@ -42,10 +27,8 @@ const Navbar = () => {
             <Link to={"/search"}>
             <li key="1">
               <i
-                data-target="modal1"
                 className="large material-icons modal-trigger icons"
                 style={{ color: "black" }}
-                onClick={() => setIsopen(true)}
               >
                 search
               </i>
@@ -107,16 +90,16 @@ const Navbar = () => {
                 <img src={home} className="icons" />
               </Link>
             </li>
+            <Link to={"/search"}>
             <li key="2">
               <i
-                data-target="modal1"
                 className="large material-icons modal-trigger icons"
                 style={{ color: "black" }}
-                onClick={() => setIsopen(true)}
               >
                 search
               </i>
             </li>
+            </Link>
             <li key="3">
               <Link to="/create">
                 <img src={tab} className="icons" />
@@ -164,23 +147,7 @@ const Navbar = () => {
     }
   };
 
-  const fetchUsers = (query) => {
-    setSearch(query);
-    fetch("/search-users", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        query,
-      }),
-    })
-      .then((res) => res.json())
-      .then((results) => {
-        console.log(results);
-        setUserDetails(results);
-      });
-  };
+  
   return (
      <>
       { isOpen ? (
@@ -198,17 +165,13 @@ const Navbar = () => {
           </ul>
         </div>
       </nav>
-        <div className="Searchmodal">
+        {/* <div className="Searchmodal">
           <div className="modalContent">
             <div style={{ borderBottom: "1px solid #cacaca" }}>
               <div>
                 <h5 style={{ margin: "0px", fontWeight: "500" }}>Search</h5>
               </div>
-              <Link to={"/"}>
-                <button className="cancelbtn" onClick={() => setIsopen(false)}>
-                  <img src={close} style={{ width: "30px", height: "30px" }} />
-                </button>
-               </Link>
+             
               <form>
                 <input
                   id="searchbar"
@@ -244,7 +207,7 @@ const Navbar = () => {
               })}
             </div>
           </div>
-        </div>
+        </div> */}
        </div> 
       )
        : <div>

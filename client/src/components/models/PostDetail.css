@@ -113,14 +113,3 @@
   background-color: transparent;
   border: 0;
 }
-.cancelbtn{
-  cursor: pointer;
-  border: 0;
-  top: 4%;
-  right: 9%;
-  padding: 5px;
-  background-color: transparent;
-  float: left;
-  position: absolute;
-  z-index: 100;
-}

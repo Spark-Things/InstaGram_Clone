@@ -6,6 +6,7 @@ import likes from "../../icons/heart.png";
 import comments from "../../icons/cmnt.png";
 import PostDetail from "../models/PostDetail";
 import close from "../../icons/close.png";
+import { Link } from "react-router-dom";
 
 //not getting data from backend
 const Profile = () => {
@@ -113,7 +114,7 @@ const Profile = () => {
                   {state ? state.username : "Loading.."}
                   {/* <img src={verified} style={{"width":"20px","height":"20px","marginLeft":"5px"}}/> */}
                 </span>
-                <button className="EditProfileBtn">Edit Profile</button>
+                <Link to="/profile/edit"><button className="EditProfileBtn">Edit Profile</button></Link>
                 <button
                   style={{
                     padding: "5px 10px",
