@@ -14,6 +14,8 @@ import NewPassword from './components/screens/NewPassword';
 import SubscribedUserPost from './components/screens/SubscribedUserpost';
 import {reducer,initialState} from './reducers/userReducer';
 import PostDetail from './components/models/PostDetail';
+import SearchUser from './components/models/SearchUser';
+import Editprofile from './components/screens/Editprofile';
 
 
 export const UserContext=createContext();
@@ -50,6 +52,8 @@ const Routing=()=>{
     <Route exact path="/reset" element={<Reset/>} />
     <Route path="/reset/:token" element={<NewPassword/>} />
     <Route path="/post" element={<PostDetail/>} />
+    <Route path="/search" exact element={<SearchUser/>} />
+    <Route path='/profile/edit' element={<Editprofile/>} />
 
   </Routes>
   );
