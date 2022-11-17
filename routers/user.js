@@ -103,13 +103,33 @@ router.get('/allUsers', (req,res) => {
 
 router.get('/profile/:userId',(req,res)=>{
  
-     User.findOne({id: req.params.userId})
-     .exec(((err,post) => {
-        if(err) console.log(err);
-        if(res) res.json(post);
-     }))
+     User.findOne({_id: req.params.userId})
+     .exec((err,post) => {
+        if(err){
+            return res.json({error : err});
+        }
+
+        if(post._id.toString() === req.params.userId.toString()){
+        return res.json(post);
+        }
+     })
 
 } )
+
+router.get('/profile/:userId/following',(req,res) =>{
+    User.findOne({_id: req.params.userId})
+    .select("following")
+    .exec((err,post) => {
+       if(err){
+           return res.json({error : err});
+       }
+
+       if(post._id.toString() === req.params.userId.toString()){
+       return res.json(post);
+       }
+    })
+    }
+ )
 
 
 module.exports = router;

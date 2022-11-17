@@ -171,6 +171,7 @@ const Profile = () => {
                   </span>
                   <span style={{ fontSize: "14px" }}>follower</span>
                 </div>
+                <Link to="/profile/following">
                 <div>
                   <span
                     style={{
@@ -186,6 +187,7 @@ const Profile = () => {
                   </span>
                   <span style={{ fontSize: "14px" }}>following</span>
                 </div>
+                </Link>
               </div>
               <div>
                 <p>bio will be displayed here</p>

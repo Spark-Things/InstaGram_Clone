@@ -16,6 +16,7 @@ import {reducer,initialState} from './reducers/userReducer';
 import PostDetail from './components/models/PostDetail';
 import SearchUser from './components/models/SearchUser';
 import Editprofile from './components/screens/Editprofile';
+import Userlist from './components/models/Userlist';
 
 
 export const UserContext=createContext();
@@ -54,6 +55,7 @@ const Routing=()=>{
     <Route path="/post" element={<PostDetail/>} />
     <Route path="/search" exact element={<SearchUser/>} />
     <Route path='/profile/edit' element={<Editprofile/>} />
+    <Route path='/profile/following' element={<Userlist/>} />
 
   </Routes>
   );

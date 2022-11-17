@@ -75,6 +75,7 @@
    width: 100%;
    text-transform: capitalize;
    border-radius: 5px;
+   color:white;
    border: 0;
    background-color: rgb(90, 156, 255);
  }
@@ -250,8 +251,9 @@
 /* ------------------------------------------------Edit Profile --------------------------------------- */
 .editprofileContainer{
   display: flex;
+  flex-direction: row;
   width: 100%;
-  height: 500px;
+  height: 80vh;
 }
 .column1{
   width: 25%;
@@ -263,8 +265,9 @@
 .items{
   font-weight: 500;
   width: 100%;
-  height: 7%;
-  padding: 5px 10px;
+  height:max-content;
+  padding:10px;
+  cursor: pointer;
 }
 .items:hover{
   background-color: #EFEFEF;
@@ -274,26 +277,80 @@
   display: flex;
   flex-direction:column;
   text-align: right;
-  background-color: yellowgreen;
+  background-color: rgb(255, 255, 255);
+  border: 1px #cacaca solid;
+  border-left: 0;
+  padding: 5%;
 }
 .tagContainer{
   display: flex;
   flex-direction: row;
   width: 100%;
-  background-color: turquoise;
   align-items: center;
-  padding-left:25%;
+  padding-left: 15%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+.imagetagContainer{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-left: 35%;
+  margin-bottom: 20px;
+}
+.uSername{
+  font-weight: 500;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+}
+.cpp{
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  color: rgb(90, 156, 255);
+}
+.cpp:hover{
+  text-decoration: underline;
 }
 .tags{
+  min-width: 20%;
   margin-right: 10%;
   float: right;
 }
 #editPageInput{
-  background-color: violet;
   width: 50%;
-  height: 40px;
+  height: 20px;
   border: 1px solid #cacaca;
   margin: 0;
+  padding: 1%;
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#editPageTextarea{
+  cursor: pointer;
+  min-width: 52%;
+  max-width: 52%;
+  min-height: 50px;
+  max-height: 120px;
+  border: 1px solid #cacaca;
+  margin: 0;
+  padding: 1%;
+  font-size: 12px;
+  border-radius: 5px;
+}
+.submitBtn{
+  font-weight: 500;
+  align-self: center;
+  margin: auto;
+  width: 15%;
+  padding: 5px;
+  color: white;
+  background-color: rgb(90, 156, 255);
+  border-radius: 5px;
+  border: 0;
+  cursor: pointer;
 }
 
 @media only screen and (max-width : 900px){
