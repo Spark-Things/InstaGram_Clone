@@ -73,7 +73,8 @@ function PostDetail({postId}){
                     : <span>Loading..</span> }
                     { postData.postedBy ? 
                      <span className='postAuthor'>{postData.postedBy.name}</span> : <span>Loading..</span> }
-                    <button className='moreBtn'><img src={more} style={{"width":"20px","height":"20px"}}></img></button></div>
+                    <button className='moreBtn'><img src={more} style={{"width":"20px","height":"20px"}}></img></button>
+                    </div>
               
                  <div className='postbody'>
                      <div className='captionContainer'>

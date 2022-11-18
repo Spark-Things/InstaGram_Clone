@@ -6,7 +6,37 @@ function Userlist() {
   
    const [Followinglist, setFollowinglist] = useState([]);
    const [state, dispatch] = useContext(UserContext);
-  
+   const [FollwingUsers, setFollwingUsers] = useState([]);
+
+
+   function getFollwingUserList() {
+    Followinglist.map((item) => {
+      return(
+        <>
+           {
+             fetch(`/profile/${item}`,{
+              method : "GET",
+              headers : {
+               "Content-type" : "application/json",
+               Authorization: "Bearer " + localStorage.getItem("jwt"),
+              }
+            })
+            .then(res => res.json())
+            .then(result => 
+              {
+                setFollwingUsers(...FollwingUsers,result)
+                console.log(result);
+                //  console.log(FollwingUsers.length);
+              })
+              .catch(err => console.log(err))
+           }
+         </>
+      )
+    })
+}
+   // eslint-disable-next-line no-unused-expressions
+
+   
    useEffect(() => {
     fetch(`/profile/${state ? state._id : "error" }/following`,{
       method : "GET",
@@ -18,11 +48,15 @@ function Userlist() {
   .then((res) => res.json())
   .then(result => setFollowinglist(result.following))
   .catch(err => console.log(err));
+}, []);
 
-}, [])
-console.log(Followinglist);
+useEffect(() => {
+  getFollwingUserList();
+}, [Followinglist])
 
-  return (
+console.log(FollwingUsers);
+
+return (
    <div className="Searchmodal">
     <div className="modalContent">
       <div style={{ borderBottom: "1px solid #cacaca" }}>
@@ -46,18 +80,21 @@ console.log(Followinglist);
         </form> */}
       </div>
       <div className="userDisplayContainer">
-         
-         { 
-            Followinglist.map(item => {
-              return(
-                <>
-                 <span className="">{item}</span>
-                 <br/>
-                 </>
-              )
-            })
-           
-         }
+        <span>{Followinglist.length}</span>
+        {
+         FollwingUsers.length != undefined ? 
+          FollwingUsers.map( (item) => {
+            return(
+              <div>
+              <span>{item.name}</span>
+              {/* <span>{FollwingUsers.length}</span> */}
+              </div>
+            )
+          }
+           )
+          :  <span> loading....</span>
+        }
+        {/* <div>{FollwingUser}</div> */}
 
         {/* {userDetails.slice(0).reverse().map((item) => { */}
           {/* return (

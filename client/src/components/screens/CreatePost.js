@@ -9,7 +9,7 @@ const CreatePost = () => {
     const navigate=useNavigate
     const [title,setTitle] =useState("");
     const [body,setBody]= useState("");
-    const [image,setImage]=useState("");
+    const [image,setImage]=useState();
     const [url,setUrl]=useState(undefined);
     const [preview, setPreview] = useState("");
 
