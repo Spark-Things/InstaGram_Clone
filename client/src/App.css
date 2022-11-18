@@ -51,6 +51,7 @@
     width: 25px;
     height: 25px;
     vertical-align: middle;
+    object-fit: cover;
   }
   .navBar{
     z-index: 100;
@@ -306,7 +307,7 @@
 }
 .cpp{
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
   color: rgb(90, 156, 255);
 }
@@ -316,7 +317,6 @@
 .tags{
   min-width: 20%;
   margin-right: 10%;
-  float: right;
 }
 #editPageInput{
   width: 50%;
@@ -336,7 +336,7 @@
   max-height: 120px;
   border: 1px solid #cacaca;
   margin: 0;
-  padding: 1%;
+  padding: 2%;
   font-size: 12px;
   border-radius: 5px;
 }
@@ -382,9 +382,55 @@
 }
 @media only screen and (max-width : 500px){
   .Searchmodal{
-    padding: 2%;
+    padding: 25% 5%;
   }
   .cancelbtn{
-    top: 2%;
+    aspect-ratio: .5;
+    right: 5%;
+    top: 5%;
   }
+  /* ---------------------- Edit Profile ------------- */
+  .editprofileContainer{
+    height: 50vh;
+    margin: 5%;
+    width: 90%;
+  }
+  .column1{
+    width: 40%;
+  }
+  .column2{
+    padding: 1%;
+  }
+  .imagetagContainer{
+    margin-left: 10%;
+  }
+  #editPageInput{
+    width: 55%;
+  }
+  #editPageTextarea{
+    font-size: 9px;
+    padding: 2%;
+    min-width: 57%;
+    min-height: 55%;
+  }
+  .tagContainer{
+    padding-left: 5%;
+  }
+  .tags{
+    float: left;
+    min-width: 33%;
+    margin-right: 5%;
+  }
+  .submitBtn{
+    margin-top: 50px;
+    width: 35%;
+  }
+}
+@media only screen and (max-width : 400px){
+  .cancelbtn{
+    aspect-ratio: .5;
+    right: 5%;
+    top: 2.8%;
+  }
+
 }
