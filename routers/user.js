@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const User = mongoose.model("User");
 const jwt = require('jsonwebtoken');
 const requireLogin = require('../middleware/requireLogin');
+const { json } = require('stream/consumers');
 const Post = mongoose.model("Post");
 
 router.get('/user/:id', requireLogin, (req, res) => {
@@ -123,13 +124,23 @@ router.get('/profile/:userId/following',(req,res) =>{
        if(err){
            return res.json({error : err});
        }
-
        if(post._id.toString() === req.params.userId.toString()){
-       return res.json(post);
+           res.json(post.following);
+        //    router.get(`/profile/:${post.following[0]}` , (req,xres) => {
+        //     User.find({_id : post.following[0]})
+        //     .then(user => xres.json(user))
+        //     .catch(err => xres.json(err))
+        //    })
        }
     })
     }
  )
 
+ router.get('/profile/:userID/followinglist', (req,res)=>{
+    User.findOne({_id : req.params.userID})
+    .select("_id pic name username")
+    .then(users => res.json(users))
+    .catch(err => res.json(err))
+ })
 
 module.exports = router;
