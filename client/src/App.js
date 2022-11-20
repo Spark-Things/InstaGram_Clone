@@ -17,6 +17,7 @@ import PostDetail from './components/models/PostDetail';
 import SearchUser from './components/models/SearchUser';
 import Editprofile from './components/screens/Editprofile';
 import Userlist from './components/models/Userlist';
+import Sidebar from './components/Sidebar';
 
 
 export const UserContext=createContext();
@@ -69,7 +70,8 @@ function App() {
   return (
     <UserContext.Provider value={[state,dispatch]}>
       <BrowserRouter>
-        <Navbar />
+        {/* <Navbar /> */}
+        <Sidebar/>
         <Routing />
       </BrowserRouter>
     </UserContext.Provider>
