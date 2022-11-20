@@ -45,7 +45,7 @@ if(process.env.NODE_ENV=="production"){
 }
 
 app.listen(PORT, () => {
-    console.log("Server is running on PORT 5000");
+    console.log(`Server is running on PORT ${PORT}`);
 });
 
 // app.use(customMiddleware);
