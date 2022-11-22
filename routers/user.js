@@ -26,7 +26,7 @@ router.get('/user/:id', requireLogin, (req, res) => {
 
 router.put('/follow', requireLogin, (req, res) => {
     User.findByIdAndUpdate(req.body.followId, {
-        $push: { followers: req.user._id }
+        $push: { followers: {_id : req.user._id, name: req.body.followername,username: req.body.followerusername,pic: req.body.followerpic }}
     }, {
         new: true
     }, (err, result) => {
@@ -34,9 +34,11 @@ router.put('/follow', requireLogin, (req, res) => {
             return res.status(422).json({ error: err })
         }
         User.findByIdAndUpdate(req.user._id, {
-            $push: { following: req.body.followId }
+            $push: { following: {_id : req.body.followId, name: req.body.name,username: req.body.username,pic: req.body.pic }}
 
-        }, { new: true }).select("-password").then(result => {
+        }, { new: true })
+        .select("-password")
+        .then(result => {
             res.json(result)
         }).catch(err => {
             return res.status(422).json({ error: err })
@@ -48,7 +50,7 @@ router.put('/follow', requireLogin, (req, res) => {
 
 router.put('/unfollow', requireLogin, (req, res) => {
     User.findByIdAndUpdate(req.body.unfollowId, {
-        $pull: { followers: req.user._id }
+        $pull: { followers: {_id:req.user._id} }
     }, {
         new: true
     }, (err, result) => {
@@ -56,7 +58,7 @@ router.put('/unfollow', requireLogin, (req, res) => {
             return res.status(422).json({ error: err })
         }
         User.findByIdAndUpdate(req.user._id, {
-            $pull: { following: req.body.unfollowId }
+            $pull: { following: {_id :req.body.unfollowId}}
 
         }, { new: true }).select("-password").then(result => {
             res.json(result)
@@ -103,44 +105,30 @@ router.get('/allUsers', (req,res) => {
 
 
 router.get('/profile/:userId',(req,res)=>{
- 
      User.findOne({_id: req.params.userId})
+     .populate("posts")
      .exec((err,post) => {
         if(err){
             return res.json({error : err});
         }
-
-        if(post._id.toString() === req.params.userId.toString()){
-        return res.json(post);
+        if(post._id.toString() == req.params.userId.toString()){
+           return res.json(post)
         }
-     })
-
-} )
+    } 
+     )})
 
 router.get('/profile/:userId/following',(req,res) =>{
     User.findOne({_id: req.params.userId})
-    .select("following")
     .exec((err,post) => {
        if(err){
            return res.json({error : err});
        }
        if(post._id.toString() === req.params.userId.toString()){
-           res.json(post.following);
-        //    router.get(`/profile/:${post.following[0]}` , (req,xres) => {
-        //     User.find({_id : post.following[0]})
-        //     .then(user => xres.json(user))
-        //     .catch(err => xres.json(err))
-        //    })
+           res.json(post);
        }
     })
     }
  )
 
- router.get('/profile/:userID/followinglist', (req,res)=>{
-    User.findOne({_id : req.params.userID})
-    .select("_id pic name username")
-    .then(users => res.json(users))
-    .catch(err => res.json(err))
- })
 
 module.exports = router;

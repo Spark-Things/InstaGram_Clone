@@ -56,7 +56,8 @@ const Routing=()=>{
     <Route path="/post" element={<PostDetail/>} />
     <Route path="/search" exact element={<SearchUser/>} />
     <Route path='/profile/edit' element={<Editprofile/>} />
-    <Route path='/profile/following' element={<Userlist/>} />
+    <Route path='/profile/following' element={<Userlist title="Following"/>} />
+    <Route path='/profile/followers' element={<Userlist title="Followers"/>} />
 
   </Routes>
   );

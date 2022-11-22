@@ -96,6 +96,7 @@
 
 /* ------------------------------------------------   SIDE BAR ------------------------------------------  */
 .Sidebar{
+  z-index: 100;
   position: fixed;
   top: 0;
   left: 0;
@@ -125,8 +126,9 @@
 .sbBTNname{
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 15px;
   height: 48px;
+  font-size: 14px;
   padding: 0 12px;
   border-radius: 24px;
   line-height: 1;
@@ -153,13 +155,15 @@
 }
 .sbBtn i{
   position: relative;
-  font-size: 28px;
+  font-size: 25px;
   transition: 0.2s;
 }
-.sbBtn img{
+.profileImg{
+  object-fit: cover;
   width: 28px;
   height: 28px;
   transition: 0.2s;
+  border-radius: 50%;
 }
 .sbBtn i > span{
   display: grid;
@@ -192,9 +196,6 @@
   font-family: BlinkMacSystemFont;
   font-style: normal;
 }
-.sbBtn > span{
-  font-size: 17px;
-}
 .navDiv{
   flex: 1 1 auto;
   display: flex;
@@ -220,6 +221,11 @@
     .sbBTNname > span{
       opacity: 0;
       visibility: hidden;
+    }
+    .profileImg{
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 50%;
     }
 }
 /* -------------------------------------------------- Search Modal -----------------------------------  */
@@ -480,6 +486,52 @@
   border: 0;
   cursor: pointer;
 }
+/* ---------------------------------------------- User Profile List ------------------------------------  */
+
+.userprofileContainer{
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 5px;
+}
+.modalTitle{
+  width: 100%;
+  font-weight: 600;
+  font-size: 24px;
+  letter-spacing: .5px;
+}
+.userprofile{
+  object-fit: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.midDtailuser{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  width: 60%;
+}
+.DuserName{
+  font-weight: 550;
+  font-size: 14px;
+}
+.userprofileContainer:hover{
+  border-radius: 10px;
+  background-color: #f2f2f2;
+}
+.FollowingBtn{ 
+  font-size: 12px;
+  font-weight: 550;
+  background-color: transparent;
+  width: 20%;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid grey;
+}
+
 
 @media only screen and (max-width : 900px){
   .nav-wrapper{
@@ -554,11 +606,19 @@
     width: 35%;
   }
 }
+
+
 @media only screen and (max-width : 400px){
   .cancelbtn{
     aspect-ratio: .5;
     right: 5%;
     top: 2.8%;
+  }
+  .midDtailuser{
+    width: 50%;
+  }
+  .FollowingBtn{
+    width: 40%;
   }
 
 }
