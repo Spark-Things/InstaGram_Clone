@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../../App";
+import {Link,useNavigate} from 'react-router-dom';
+import close from "../../icons/close.png";
 
-function Userlist() {
-  const [Followinglist, setFollowinglist] = useState([]);
+function Userlist({title}) {
+  const [Followinglist, setFollowinglist] = useState();
   const [state, dispatch] = useContext(UserContext);
-  const [FollwingUsers, setFollwingUsers] = useState([]);
 
-  const list = [];
-
+  const navigate=useNavigate();
   // eslint-disable-next-line no-unused-expressions
-
   useEffect(() => {
+    
+    if(title == "Following"){
+
     fetch(`/profile/${state ? state._id : "error"}/following`, {
       method: "GET",
       headers: {
@@ -20,51 +22,39 @@ function Userlist() {
     })
       .then((res) => res.json())
       .then((result) => {
-        setFollowinglist(result);
-        console.log(result);
+        setFollowinglist(result.following);
+        console.log(result.following);
       })
       .catch((err) => console.log(err));
-  }, []);
-
-  useEffect(() => {
-    try {
-      Followinglist.map((item) => {
-        fetch(`/profile/${item}/followinglist`, {
-          method: "GET",
-          headers: {
-            "Content-type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("jwt"),
-          },
-        })
-          .then((res) => res.json())
-          .then((result) => {
-            setFollwingUsers((prevState) => {
-              return {
-                ...prevState,
-                result,
-              };
-            });
-          })
-          .catch((err) => console.log(err));
-      });
-    } catch {
-      console.log("MC");
     }
+    else if(title == "Followers"){
+      fetch(`/profile/${state ? state._id : "error"}/following`, {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("jwt"),
+        },
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          setFollowinglist(result.followers);
+          console.log(result.followers);
+        })
+        .catch((err) => console.log(err));
+      }
   }, []);
-
-  console.log(typeof FollwingUsers);
 
   return (
     <div className="Searchmodal">
       <div className="modalContent">
         <div style={{ borderBottom: "1px solid #cacaca" }}>
-          {/* <Link to={"/"}>
-                <button className="cancelbtn" onClick={() => navigate("/") }>
+                <button className="cancelbtn" onClick={() => navigate('/profile') }>
                   <img src={close} style={{ width: "30px", height: "30px" }} />
                 </button>
-      </Link> */}
           <div>
-            <h5 style={{ margin: "0px", fontWeight: "500" }}>following</h5>
+            <span className="modalTitle">{title}</span><br/>
+            <span style={{"fontSize":"11px","fontWeight":"550","color":"grey"}}>{
+            Followinglist ? Followinglist.length : null} {title}</span>
           </div>
           {/* <form>
           <input
@@ -77,45 +67,33 @@ function Userlist() {
           />
         </form> */}
         </div>
-        <div className="userDisplayContainer">
-          <span>{Followinglist.length}</span>
-          <span>{list.length}</span>
-          {FollwingUsers.length == Followinglist.length ? (
-            FollwingUsers.map((item) => {
+        <div className="userDisplayContainer" style={{ padding: "2% 5%" }}>
+          {Followinglist ? (
+            Followinglist.map((item) => {
               return (
-                <div>
-                  <span>{item.name}</span>
-                  {/* <span>{FollwingUsers.length}</span> */}
-                </div>
+                <>
+                 <Link to={item._id !== state._id ? "/profile/"+ item._id : '/profile'}>
+                  <div className="userprofileContainer">
+                    <img src={item.pic} className="userprofile"></img>
+                    <div
+                      className="midDtailuser"
+                    >
+                      <span className="DuserName">{item.username}</span>
+                      <span style={{ fontSize: "11px", color: "#cacaca" }}>
+                        {item.name}
+                      </span>
+                    </div>
+                    <button className="FollowingBtn">
+                      { title == "Following" ? "Following" : "Remove" }   
+                      </button>
+                  </div>
+                  </Link>
+                </>
               );
             })
           ) : (
-            <span>Loading.....</span>
+            <span>Loading...</span>
           )}
-          {/* <span>{FollwingUsers}</span> */}
-          {/* <div>{FollwingUser}</div> */}
-
-          {/* {userDetails.slice(0).reverse().map((item) => { */}
-          {/* return (
-         
-           <Link to={item._id !== state._id ? "/profile/"+ item._id : '/profile'}
-            
-            // onClick={() => setIsopen(false)}
-           >
-            <div className="userContainer">
-              <img
-                src={item.pic}
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "50%",
-                }}
-              />
-              <span className="userNames">{item.name}</span>
-            </div>
-            </Link>    
-          ); */}
-          {/* })} */}
         </div>
       </div>
     </div>
