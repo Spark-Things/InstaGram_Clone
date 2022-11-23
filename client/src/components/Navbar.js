@@ -5,85 +5,26 @@ import tab from "../icons/tab.png";
 import user from "../icons/user.png";
 import fav from "../icons/fav.png";
 import home from "../icons/hut.png";
+import search from "../icons/serch.png"
 import M from "materialize-css";
 import close from "../icons/close.png";
+import Sidebar from "./Sidebar";
 
 const Navbar = () => {
   const getUserID = JSON.parse(localStorage.getItem("user"));
-  const searchModal = useRef(null);
+  // const searchModal = useRef(null);
   const [state, dispatch] = useContext(UserContext);
   const [isOpen, setIsopen] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    M.Modal.init(searchModal.current);
-  }, []);
+  // useEffect(() => {
+  //   M.Modal.init(searchModal.current);
+  // }, []);
 
   const renderList = () => {
     if (state) {
       return [
         <>
-          <div className="right_Nav">
-            <Link to={"/search"}>
-            <li key="1">
-              <i
-                className="large material-icons modal-trigger icons"
-                style={{ color: "black" }}
-              >
-                search
-              </i>
-            </li>
-            </Link>
-            <li key="2">
-              <Link to="/myfollowingpost">
-                <img src={fav} className="icons" />
-              </Link>
-            </li>
-            <li key="3">
-              <Link to="/create">
-                <img src={tab} className="icons" />
-              </Link>
-            </li>
-            <li key="4">
-              <Link to="/profile">
-                {getUserID.pic ? (
-                  <img
-                    src={getUserID.pic}
-                    className="icons"
-                    style={{
-                      borderRadius: "25px",
-                      width: "30px",
-                      height: "30px",
-                    }}
-                  />
-                ) : (
-                  <img src={user} className="icons" />
-                )}
-              </Link>
-            </li>
-            <li key="5">
-              <button
-                className="logOutbtn"
-                onClick={() => {
-                  localStorage.clear();
-                  dispatch({ type: "CLEAR" });
-                  navigate("/signin");
-                }}
-              >
-                logout
-              </button>
-            </li>
-          </div>
-          <button
-            className="logOutbtn2"
-            onClick={() => {
-              localStorage.clear();
-              dispatch({ type: "CLEAR" });
-              navigate("/signin");
-            }}
-          >
-            logout
-          </button>
           <div className="right_Nav2">
             <li key="1">
               <Link to="/">
@@ -92,12 +33,7 @@ const Navbar = () => {
             </li>
             <Link to={"/search"}>
             <li key="2">
-              <i
-                className="large material-icons modal-trigger icons"
-                style={{ color: "black" }}
-              >
-                search
-              </i>
+            <img src={search} className="icons" />
             </li>
             </Link>
             <li key="3">
@@ -119,53 +55,25 @@ const Navbar = () => {
                     className="icons"
                     style={{
                       borderRadius: "25px",
-                      width: "30px",
-                      height: "30px",
                     }}
                   />
                 ) : (
-                  <img src={user} className="icons" />
+                  <img src={user} className="icons"
+                  style={{
+                    borderRadius: "25px",
+                  }} />
                 )}
               </Link>
             </li>
           </div>
         </>,
       ];
-    } else {
-      return [
-        <li>
-          <Link key="6" to="/signin">
-            Signin
-          </Link>
-        </li>,
-        <li>
-          <Link key="7" to="/signup">
-            Signup
-          </Link>
-        </li>,
-      ];
     }
   };
-
-  
   return (
      <>
-      { isOpen ? (
-        <div>
-      <nav
-        style={{ boxShadow: "none", borderBottom: "1px solid #cacaca" }}
-        className="navBar"
-      >
-        <div className="nav-wrapper white">
-          <Link to={state ? "/" : "/signin"} className="brandLogo">
-            Instagram
-          </Link>
-          <ul id="nav-mobile" className="right ">
-            {renderList()}
-          </ul>
-        </div>
-      </nav>
-        {/* <div className="Searchmodal">
+      {/* { isOpen ? */}
+      {/* <div className="Searchmodal">
           <div className="modalContent">
             <div style={{ borderBottom: "1px solid #cacaca" }}>
               <div>
@@ -207,25 +115,65 @@ const Navbar = () => {
               })}
             </div>
           </div>
-        </div> */}
-       </div> 
-      )
-       : <div>
-      <nav
-        style={{ boxShadow: "none", borderBottom: "1px solid #cacaca" }}
-        className="navBar"
-      >
+        </div>  */}
+        <Sidebar />
         <div className="nav-wrapper white">
           <Link to={state ? "/" : "/signin"} className="brandLogo">
             Instagram
           </Link>
-          <ul id="nav-mobile" className="right ">
-            {renderList()}
-          </ul>
+          <button
+            className="logOutbtn2"
+            onClick={() => {
+              localStorage.clear();
+              dispatch({ type: "CLEAR" });
+              navigate("/signin");
+            }}
+          >
+            logout
+          </button>
         </div>
-      </nav>
-      </div>
-      }
+        <div className="right_Nav2">
+            <a key="1">
+              <Link to="/">
+                <img src={home} className="icons" />
+              </Link>
+            </a>
+            <Link to={"/search"}>
+            <a key="2">
+            <img src={search} className="icons" />
+            </a>
+            </Link>
+            <a key="3">
+              <Link to="/create">
+                <img src={tab} className="icons" />
+              </Link>
+            </a>
+            <a key="4">
+              <Link to="/myfollowingpost">
+                <img src={fav} className="icons" />
+              </Link>
+            </a>
+            <a key="5">
+              <Link to="/profile">
+                {" "}
+                {getUserID.pic ? (
+                  <img
+                    src={getUserID.pic}
+                    className="icons"
+                    style={{
+                      borderRadius: "25px",
+                    }}
+                  />
+                ) : (
+                  <img src={user} className="icons"
+                  style={{
+                    borderRadius: "25px",
+                  }} />
+                )}
+              </Link>
+            </a>
+          </div>
+      {/* } */}
     </>
   );
 };
