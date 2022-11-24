@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext } from 'react';
-import './home.css';
 import { UserContext } from '../../App';
 import { Link } from 'react-router-dom';
 
@@ -120,7 +119,6 @@ const SubscribedUserPost = () => {
                     data.map(item => {
                         return (
                             <div className="card home-card" key={item._id}>
-
                            <div className='Post-top_Section'>     
                                 <img src={item.postedBy.pic} className="HpPic"/>
                                <span>

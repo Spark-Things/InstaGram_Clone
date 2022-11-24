@@ -111,7 +111,7 @@ const Signup = () => {
              value={password} onChange={(e) => setPassword(e.target.value)} />
          </div>
          <button className='LoginBtn' onClick={() =>PostData()}>SignUp</button><br/><br/>
-         <span style={{"color":"grey","fontSize":"15px"}}> Already have an account ? Please <Link to="/SignIn"><span style={{"color":"blue","textDecoration":"underline"}}>Signin</span></Link> !!</span>
+         <span style={{"color":"grey","fontSize":"15px"}}> Already have an account ? Please <Link to="/signin"><span style={{"color":"blue","textDecoration":"underline"}}>Signin</span></Link> !!</span>
     </div>
  </div>
         </div>

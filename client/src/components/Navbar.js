@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../App"; 
 import tab from "../icons/tab.png";
 import user from "../icons/user.png";
@@ -116,7 +116,8 @@ const Navbar = () => {
             </div>
           </div>
         </div>  */}
-        <Sidebar />
+       <Sidebar />
+     
         <div className="nav-wrapper white">
           <Link to={state ? "/" : "/signin"} className="brandLogo">
             Instagram
@@ -156,6 +157,7 @@ const Navbar = () => {
             <a key="5">
               <Link to="/profile">
                 {" "}
+                {getUserID ? <>
                 {getUserID.pic ? (
                   <img
                     src={getUserID.pic}
@@ -169,7 +171,7 @@ const Navbar = () => {
                   style={{
                     borderRadius: "25px",
                   }} />
-                )}
+                )} </> : "0"}
               </Link>
             </a>
           </div>

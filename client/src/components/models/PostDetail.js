@@ -3,7 +3,7 @@ import "./PostDetail.css";
 import { UserContext } from "../../App";
 import user from "../../icons/user.png";
 import like from "../../icons/like.png";
-import cmnt from "../../icons/cmt.png";
+import cmntp from "../../icons/cmt.png";
 import more from "../../icons/more.png";
 import emoji from "../../icons/emoji.png";
 import send from "../../icons/send.png";
@@ -14,6 +14,7 @@ function PostDetail({ postId }) {
   const [postData, setPostData] = useState([]);
   const [data, setData] = useState([]);
   const [state, dispatch] = useContext(UserContext);
+  const [cmnt, setcmnt] = useState("")
   console.log(postId);
   useEffect(() => {
     fetch(`/allpost/${postId}`, {
@@ -26,7 +27,7 @@ function PostDetail({ postId }) {
         console.log(result);
         setPostData(result);
       });
-  }, []);
+  }, [data]);
 
   const makeComment = (text, postId) => {
     if (text === "" || text === null || text == " ") {
@@ -174,7 +175,7 @@ function PostDetail({ postId }) {
                   }}
                 />
                 <img
-                  src={cmnt}
+                  src={cmntp}
                   style={{
                     width: "20px",
                     height: "20px",
@@ -188,12 +189,11 @@ function PostDetail({ postId }) {
                 />
                 {/* <img src={like} style={{"width":"25px","height":"25px","alignSelf":"flex-end"}}/> */}
               </div>
-              {/* <span className='likesCount'>{postData.likes.length} likes</span> */}
+              <span className='likesCount'>{postData.likes ? postData.likes.length : "0"} likes</span>
               <span style={{ color: "grey", fontSize: "9px" }}>2 days ago</span>
             </div>
-            <div style={{ display: "flex", aligninfos: "center" }}>
-              <img
-                src={emoji}
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <img src={emoji}
                 style={{
                   width: "30px",
                   height: "30px",
@@ -201,28 +201,19 @@ function PostDetail({ postId }) {
                   cursor: "pointer",
                   height: "100%",
                 }}
-                alt="img"
-              />
-              <form
-                className="AddComment"
-                onSubmit={(e) => {
+                alt="img" />
+              <form  className="AddComment" >
+                <input type="text" placeholder="add a comment" onChange={(e) => setcmnt(e.target.value)}
+                value={cmnt} autoFocus />
+                <button onClick={(e)=>{
                   e.preventDefault();
-                  makeComment(e.target[0].value, postData._id);
-                }}
-              >
-                <input type="text" placeholder="add a comment" />
-                <button>Post</button>
+                  makeComment(cmnt,postData._id);
+                  setcmnt("");
+                }}>Post</button>
               </form>
             </div>
           </div>
         </div>
-        {/* <button className='cancelbtn'>
-               <img  src={close} 
-                    style={{"width": "30px",
-                   "height": "30px"}}
-               
-               />
-               </button> */}
       </div>
     </>
   );
