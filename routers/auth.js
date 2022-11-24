@@ -183,6 +183,7 @@ router.get('/allpost/:postID',requireLogin,(req,res) => {
 
 router.get('/getsubpost', requireLogin, (req, res) => {
     //if posted by in following
+    console.log(req.user.following);
     Post.find({ postedBy: { $in: req.user.following } })
         .populate("postedBy", "_id name pic username")
         .populate("comments.postedBy", "_id name")

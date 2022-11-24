@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from './components/Navbar';
-import { BrowserRouter, Route, Routes ,useNavigate , useLocation} from 'react-router-dom'
+import { BrowserRouter, Route, Routes ,useNavigate , useLocation, useParams} from 'react-router-dom'
 import {React,  useEffect, createContext,useReducer, useContext} from 'react';
 
 import Signup from './components/screens/Signup';
@@ -17,7 +17,6 @@ import PostDetail from './components/models/PostDetail';
 import SearchUser from './components/models/SearchUser';
 import Editprofile from './components/screens/Editprofile';
 import Userlist from './components/models/Userlist';
-import Sidebar from './components/Sidebar';
 
 
 export const UserContext=createContext();
@@ -67,11 +66,11 @@ const Routing=()=>{
 function App() {
 
   const [state,dispatch]= useReducer(reducer,initialState);
-  
+  var {path} = useParams();
   return (
     <UserContext.Provider value={[state,dispatch]}>
       <BrowserRouter>
-        <Navbar />
+       { state ? <Navbar /> : null}
         <Routing />
       </BrowserRouter>
     </UserContext.Provider>

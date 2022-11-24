@@ -40,7 +40,6 @@ const Signin = () => {
                 console.log(err);
             })
     }
-    console.log("Hello renish");
     return (
         <div className='My-container'>
        <div className='Logincard'>
@@ -57,7 +56,7 @@ const Signin = () => {
              value={password} onChange={(e) => setPassword(e.target.value)} />
          </div>
             <button className='LoginBtn' onClick={() =>PostData()}>Signin</button><br/><br/>
-            <span style={{"color":"grey","fontSize":"15px"}}>Don't have an Account? Please <Link to="/SignUp"><span style={{"color":"blue","textDecoration":"underline"}}>SignUp</span></Link> !!</span>
+            <span style={{"color":"grey","fontSize":"15px"}}>Don't have an Account? Please <Link to="/signup"><span style={{"color":"blue","textDecoration":"underline"}}>SignUp</span></Link> !!</span>
        </div>
     </div>
     )

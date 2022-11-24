@@ -1,7 +1,3 @@
-.mainDiv{
-  max-width: 800px;
-  margin: 80px auto;
-}
 .profilePage{
   display: flex;
   padding: 5px 10%;
@@ -29,8 +25,8 @@
  margin-top: 5px;
 }
 .item{
- width: 245px;
- height: 245px;
+ width: 220px;
+ height: 220px;
  margin: 10px;
 }
 .item > img {
@@ -71,14 +67,46 @@
 .itemDetailContainer:hover{
    opacity: 1;
 }
-@media  only screen and (max-width : 700px) {
+@media  only screen and (max-width : 900px) and (min-width: 710px) {
+  .item{
+    margin: 7px;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
+  .Gallary{
+    display: grid;
+    grid-template-areas: '. . .';
+    padding: 10px;
+    padding-top: 2px;
+  }
+  .ProfilePic{
+    width: 80px;
+    height: 80px;
+  }
+  .ContentContainer{
+    padding: 0px;
+    width: 55%;
+    margin-left:8%;
+  }
+  .EditProfileBtn{
+    font-size: 9px;
+    padding: 7px;
+  }
+  .itemDetailContainer{
+    padding: 13% 4.5%;
+    margin: 1px;
+    width: 125px;
+    height: 125px;
+  }
+}
+@media  only screen and (max-width : 712px) {
   .profilePage{
     padding: 10px 20px;
   }
   .item{
-    margin: 1.5px;
-    width: 126px;
-    height: 126px;
+    width: 145px;
+    height: 145px;
     object-fit: cover;
   }
   .Gallary{
@@ -105,45 +133,15 @@
     height: 125px;
   }
 }
-@media  only screen and (max-width : 900px) and (min-width: 710px) {
-  .item{
-    margin: 7px;
-    width: 230px;
-    height: 230px;
-    object-fit: cover;
-  }
-  .Gallary{
-    padding: 10px;
-    padding-top: 2px;
-  }
-  .ProfilePic{
-    width: 80px;
-    height: 80px;
-  }
-  .ContentContainer{
-    padding: 0px;
-    width: 55%;
-    margin-left:8%;
-  }
-  .EditProfileBtn{
-    font-size: 9px;
-    padding: 7px;
-  }
-  .itemDetailContainer{
-    padding: 13% 4.5%;
-    margin: 1px;
-    width: 125px;
-    height: 125px;
-  }
-}
+
 @media  only screen and (max-width : 450px){
   .profilePage{
     padding: 10px;
   }
   .item{
     margin: 2px;
-    width: 125px;
-    height: 125px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
   }
   .ContentContainer{
@@ -157,11 +155,14 @@
     height: 125px;
   }
 }
-@media  only screen and (max-width : 360px){
+@media  only screen and (max-width : 400px){
+  .Gallary{
+    display: grid;
+    grid-template-areas: '. . .';
+  }
   .item{
-    margin: 1.2px;
-    width: 110px;
-    height: 110px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
   }
   .itemDetailContainer{
