@@ -43,20 +43,24 @@ const Signin = () => {
     return (
         <div className='My-container'>
        <div className='Logincard'>
-        <h2 className='brand-logo' style={{"textAlign":"center"}}>Instagram</h2>
+        <span className='brand-logo'>Instagram</span>
              
-        <div>
+          <div>
              <label>Email</label>
-             <input className='input-field' type="text" placeholder='Spark3000@gmail.com'
+             <input id='inputTxt' type="text" placeholder='Spark3000@gmail.com'
               value={email} onChange={(e) => setEmail(e.target.value)}/>
-         </div>
-         <div>
+          </div>
+          <div>
               <label>Password</label>
-             <input className='input-field' type="password" placeholder='Spark@3000' 
+             <input id='inputTxt' type="password" placeholder='Spark@3000' 
              value={password} onChange={(e) => setPassword(e.target.value)} />
          </div>
+
+             <span className='Fptxt'>Forgot Password ?</span>
+
+
             <button className='LoginBtn' onClick={() =>PostData()}>Signin</button><br/><br/>
-            <span style={{"color":"grey","fontSize":"15px"}}>Don't have an Account? Please <Link to="/signup"><span style={{"color":"blue","textDecoration":"underline"}}>SignUp</span></Link> !!</span>
+            <span style={{"color":"grey","fontSize":"15px"}}>Don't have an Account? <Link to="/signup"><span style={{"color":"blue","textDecoration":"underline"}}>Sign Up</span></Link></span>
        </div>
     </div>
     )
