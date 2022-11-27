@@ -1,28 +1,57 @@
 .brand-logo{
+    color: black;
     font-family: 'Grand Hotel', cursive;
     cursor: pointer;
-    margin-bottom: 35px;
+    font-size: 48px ;
+    text-align: center;
   }
 .My-container{
+    height: 100vh;
+    display: flex;
     align-items: center;
+    background-color: #003aff;
+    background-image: linear-gradient(132deg, #003aff 0%, #ff00e5 33%, #ff8700 75%, #fff503 99%);
+    
  }
  .Logincard{
    margin: auto;
-   width: 35%;
+   width: 25%;
+   background-color: #f9f9f9;
    height: max-content;
    padding: 2%;
-   margin-top: 2%;
+   border: 1px solid #cacaca;
+   border-radius: 10px;
+   display: flex;
+   flex-direction: column;
  }
  label{
-   font-weight: 550;
+   font-weight: 600;
    color: black;
-   font-size: 18px;
+   font-size: 16px;
+   letter-spacing: 1.5px;
+ }
+ #inputTxt{
+   width: 100%;
+   padding: 0px 10px;
+   height: 30px;
+   font-size: 14px;
+   border-radius: 10px;
+   background-color: transparent;
+ }
+ .Fptxt{
+   cursor: pointer;
+   color: black;
+   font-weight: 550;
+ }
+ .Fptxt:hover{
+  color: #457aff;
  }
  .LoginBtn{
   cursor: pointer;
    padding: 10px;
    min-width: 25%;
    margin: auto;
+   color: white;
    margin-top: 10px;
    border: 0;
    background-color: rgb(90, 156, 255);
@@ -79,5 +108,8 @@
       width: 95%;
       margin: 10px;
       padding-top: 10%;
+     }
+     #inputTxt{
+      width: 95%;
      }
   }
