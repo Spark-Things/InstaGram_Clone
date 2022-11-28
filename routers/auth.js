@@ -11,6 +11,7 @@ const Post = mongoose.model("Post");
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
 const {SENDGRID_API,EMAIL} =require('../config/keys');
+const { buffer } = require('stream/consumers');
 
 
 const transporter = nodemailer.createTransport(sendgridTransport({
@@ -19,29 +20,12 @@ const transporter = nodemailer.createTransport(sendgridTransport({
     }
 }))
 
-// router.get('/',(req,res)=>{
-//     res.send("hello");
-// });
-
-// this is for cheking only
-// router.get('/protected',requireLogin,(req,res)=>{
-//     res.send('Hello User');
-// });
-
-
-// router.get('/',(req,res)=>{
-//     res.redirect("/myfollowingpost");
-// });
-
 router.post('/signup', (req, res) => {
     console.log(req.body);
     const { name, email, password, pic,username } = req.body;
     if (!email || !password || !name || !username) {
         return res.status(422).json({ error: "please add all fields" }); // we don't want to proceed further so use return
     }
-    // res.json({
-    //     message:"successfully sent"
-    // });
     User.findOne({ email: email })
         .then((savedUser) => {
             if (savedUser) {
@@ -58,12 +42,12 @@ router.post('/signup', (req, res) => {
                     });
                     user.save()
                         .then(user => {
-                            transporter.sendMail({
-                                to: user.email,
-                                from: "itsmegalaxy007@gmail.com",
-                                subject: "Signup success",
-                                html: "<h1>welcome to instaclone</h1>"
-                            })
+                            // transporter.sendMail({
+                            //     to: user.email,
+                            //     from: "itsmegalaxy007@gmail.com",
+                            //     subject: "Signup success",
+                            //     html: "<h1>welcome to instaclone</h1>"
+                            // })
                             res.json({ message: "signup successfully" });//response not wait for transporter
                         })
                         .catch(err => {
@@ -124,7 +108,7 @@ router.post('/reset-password', (req, res) => {
                         subject: "password reset",
                         html:`
                         <p>You requested for password reset</p>
-                        <h5>Click in this <a href="${EMAIL}/reset/${token}"> link </a> to reset password</h5>`
+                        <h5>Click in this <a href="${EMAIL}/reset/${token}"> link to reset password</a></h5>`
                     })
                     res.json({message:"check your mail..."});
                 })
@@ -144,7 +128,8 @@ router.post('/new-password',(req,res)=>{
             user.password = hashedpassword
             user.resetToken =undefined
             user.expireToken= undefined
-            user.save().then((savedUser)=>{
+            user.save()
+            .then((savedUser)=>{
                 res.json({message: "password updated success."})
             })
         })
@@ -236,7 +221,7 @@ router.put('/like', requireLogin, (req, res) => {
     }, {
         new: true
     })
-    .populate("postedBy", "_id name")
+    .populate("postedBy", "_id name pic username")
     .exec((err, result) => {
         if (err) {
             return res.status(422).json({ error: err })
@@ -252,7 +237,7 @@ router.put('/unlike', requireLogin, (req, res) => {
     }, {
         new: true
     })
-    .populate("postedBy", "_id name")
+    .populate("postedBy", "_id name pic username")
     .exec((err, result) => {
         if (err) {
             return res.status(422).json({ error: err })
@@ -271,8 +256,8 @@ router.put('/comment', requireLogin, (req, res) => {
         $push: { comments: comment }
     }, {
         new: true
-    }).populate("comments.postedBy", "_id name pic")
-        .populate("postedBy", "_id name pic")
+    }).populate("comments.postedBy", "_id name pic username")
+    .populate("postedBy", "_id name pic username")
         .exec((err, result) => {
             if (err) {
                 return res.status(422).json({ error: err })

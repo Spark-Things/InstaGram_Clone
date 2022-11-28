@@ -75,7 +75,7 @@ const Profile = () => {
 
   return (
     <>
-      { Open ? (
+      {Open ? (
         <div>
           <PostDetail postId={postId} />
           <button className="cancelbtn" onClick={() => setOpen(false)}>
@@ -84,181 +84,199 @@ const Profile = () => {
         </div>
       ) : (
         <>
-        { mypics ?
-        <div className="mainDiv">
-          <div
-            className="profilePage"
-            style={{ fontFamily: "Signika Negative" }}
-          >
-            <div style={{ width: "max-content", margin: "0" }}>
-              <img className="ProfilePic" src={state ? state.pic : "loading"} />
-            </div>
-            <div className="ContentContainer">
+          {mypics ? (
+            <div className="mainDiv">
               <div
-                style={{
-                  width: "100%",
-                  //   "backgroundColor":"green",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  margin: "auto",
-                }}
+                className="profilePage"
+                style={{ fontFamily: "Signika Negative" }}
               >
-                <span
-                  style={{
-                    fontWeight: "500",
-                    fontSize: "20px",
-                    minWidth: "47%",
-                  }}
-                >
-                  {state ? state.username : "Loading.."}
-                  {/* <img src={verified} style={{"width":"20px","height":"20px","marginLeft":"5px"}}/> */}
-                </span>
-                <Link to="/profile/edit"><button className="EditProfileBtn">Edit Profile</button></Link>
-                <button
-                  style={{
-                    padding: "5px 10px",
-                    backgroundColor: "transparent",
-                    border: "0",
-                  }}
-                  onClick={() => alert("tapa tatti")}
-                >
+                <div style={{ width: "max-content", margin: "0" }}>
                   <img
-                    src={settingImage}
-                    style={{ width: "20px", height: "20px" }}
-                  ></img>
-                </button>
-              </div>
-              <span style={{ fontSize: "12px" }}>
-                {state ? state.name : "Loading.."}
-              </span>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  padding: "10px",
-                  paddingLeft: "0px",
-                  width: "100%",
-                }}
-              >
-                <div>
-                  <span
-                    style={{
-                      width: "max-content",
-                      fontWeight: "550",
-                      cursor: "pointer",
-                      marginRight: "10%",
-                    }}
-                  >
-                    {" "}
-                    <span style={{ fontWeight: "650" }}>{mypics.length}</span>
-                  </span>
-                  <span style={{ fontSize: "14px" }}>posts</span>
+                    className="ProfilePic"
+                    src={state ? state.pic : "loading"}
+                  />
                 </div>
-                <Link to="/profile/followers">
-                <div>
-                  <span
-                    style={{
-                      width: "max-content",
-                      fontWeight: "550",
-                      cursor: "pointer",
-                      marginRight: "10%",
-                    }}
-                  >
-                    <span style={{ fontWeight: "650" }}>
-                      {state ? state.followers.length : "0"}
-                    </span>
-                  </span>
-                  <span style={{ fontSize: "14px" }}>follower</span>
-                </div>
-                </Link>
-                <Link to="/profile/following">
-                <div>
-                  <span
-                    style={{
-                      width: "max-content",
-                      fontWeight: "550",
-                      cursor: "pointer",
-                      marginRight: "10%",
-                    }}
-                  >
-                    <span style={{ fontWeight: "650" }}>
-                      {state ? state.following.length : "0"}
-                    </span>
-                  </span>
-                  <span style={{ fontSize: "14px" }}>following</span>
-                </div>
-                </Link>
-              </div>
-              <div>
-                <p>bio will be displayed here</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="file-field input-field" style={{ margin: "10px" }}>
-            <div className="btn #64b5f6 blue darken-1">
-              <span>Update pic</span>
-              <input
-                type="file"
-                onChange={(e) => updatePhoto(e.target.files[0])}
-              />
-            </div>
-            <div className="file-path-wrapper">
-              <input className="file-path validate" type="text" />
-            </div>
-          </div>
-
-          <div className="Gallary">
-            {mypics
-              .slice(0)
-              .reverse()
-              .map((item) => {
-                return (
+                <div className="ContentContainer">
                   <div
-                    className="item"
-                    onClick={() => {
-                      setpostId(item._id);
-                      setOpen(true);
+                    style={{
+                      width: "100%",
+                      //   "backgroundColor":"green",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      margin: "auto",
                     }}
                   >
-                    <div
-                      className="itemDetailContainer"
-                      style={{ display: "flex" }}
+                    <span
+                      style={{
+                        fontWeight: "500",
+                        fontSize: "20px",
+                        minWidth: "47%",
+                      }}
+                    >
+                      {state ? state.username : "Loading.."}
+                      {/* <img src={verified} style={{"width":"20px","height":"20px","marginLeft":"5px"}}/> */}
+                    </span>
+                    <Link to="/profile/edit">
+                      <button className="EditProfileBtn">Edit Profile</button>
+                    </Link>
+                    <button
+                      style={{
+                        padding: "5px 10px",
+                        backgroundColor: "transparent",
+                        border: "0",
+                      }}
+                      onClick={() => alert("tapa tatti")}
                     >
                       <img
-                        src={likes}
-                        style={{
-                          width: "22px",
-                          height: "22px",
-                          marginRight: "5px",
-                          cursor:"pointer"
-                        }}
-                      />
-                      <span className="LikesCount" style={{cursor:"pointer"}}>
-                        <b>{item.likes.length}</b>
-                      </span>
-                      <img
-                        src={comments}
-                        style={{
-                          width: "18px",
-                          height: "18px",
-                          marginRight: "5px",
-                          cursor:"pointer"
-                        }}
-                      />
-                      <span className="CommentsCount"  style={{cursor:"pointer"}}>
-                        <b>{item.comments.length}</b>
-                      </span>
-                    </div>
-                    <img key={item._id} src={item.photo} alt={item.title} />
+                        src={settingImage}
+                        style={{ width: "20px", height: "20px" }}
+                      ></img>
+                    </button>
                   </div>
-                );
-              })}
-          </div>
-        </div> 
-        : <h2>Loading...</h2> }
+                  <span style={{ fontSize: "12px" }}>
+                    {state ? state.name : "Loading.."}
+                  </span>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      padding: "10px",
+                      paddingLeft: "0px",
+                      width: "100%",
+                    }}
+                  >
+                    <div>
+                      <span
+                        style={{
+                          width: "max-content",
+                          fontWeight: "550",
+                          cursor: "pointer",
+                          marginRight: "10%",
+                        }}
+                      >
+                        {" "}
+                        <span style={{ fontWeight: "650" }}>
+                          {mypics.length}
+                        </span>
+                      </span>
+                      <span style={{ fontSize: "14px" }}>posts</span>
+                    </div>
+                    <Link to="/profile/followers">
+                      <div>
+                        <span
+                          style={{
+                            width: "max-content",
+                            fontWeight: "550",
+                            cursor: "pointer",
+                            marginRight: "10%",
+                          }}
+                        >
+                          <span style={{ fontWeight: "650" }}>
+                            {state ? state.followers.length : "0"}
+                          </span>
+                        </span>
+                        <span style={{ fontSize: "14px" }}>follower</span>
+                      </div>
+                    </Link>
+                    <Link to="/profile/following">
+                      <div>
+                        <span
+                          style={{
+                            width: "max-content",
+                            fontWeight: "550",
+                            cursor: "pointer",
+                            marginRight: "10%",
+                          }}
+                        >
+                          <span style={{ fontWeight: "650" }}>
+                            {state ? state.following.length : "0"}
+                          </span>
+                        </span>
+                        <span style={{ fontSize: "14px" }}>following</span>
+                      </div>
+                    </Link>
+                  </div>
+                  <div>
+                    <p>bio will be displayed here</p>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                className="file-field input-field"
+                style={{ margin: "10px" }}
+              >
+                <div className="btn #64b5f6 blue darken-1">
+                  <span>Update pic</span>
+                  <input
+                    type="file"
+                    onChange={(e) => updatePhoto(e.target.files[0])}
+                  />
+                </div>
+                <div className="file-path-wrapper">
+                  <input className="file-path validate" type="text" />
+                </div>
+              </div>
+
+              <div className="Gallary">
+                {mypics
+                  .slice(0)
+                  .reverse()
+                  .map((item) => {
+                    return (
+                      <div
+                        className="item"
+                        onClick={() => {
+                          setpostId(item._id);
+                          setOpen(true);
+                        }}
+                      >
+                        <div
+                          className="itemDetailContainer"
+                          style={{ display: "flex" }}
+                        >
+                          <img
+                            src={likes}
+                            style={{
+                              width: "22px",
+                              height: "22px",
+                              marginRight: "5px",
+                              cursor: "pointer",
+                            }}
+                          />
+                          <span
+                            className="LikesCount"
+                            style={{ cursor: "pointer" }}
+                          >
+                            <b>{item.likes.length}</b>
+                          </span>
+                          <img
+                            src={comments}
+                            style={{
+                              width: "18px",
+                              height: "18px",
+                              marginRight: "5px",
+                              cursor: "pointer",
+                            }}
+                          />
+                          <span
+                            className="CommentsCount"
+                            style={{ cursor: "pointer" }}
+                          >
+                            <b>{item.comments.length}</b>
+                          </span>
+                        </div>
+                        <img key={item._id} src={item.photo} alt={item.title} />
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
+          ) : (
+            <h2>Loading...</h2>
+          )}
         </>
       )}
     </>
