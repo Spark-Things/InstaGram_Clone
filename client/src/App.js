@@ -37,7 +37,7 @@ const Routing=()=>{
       if(!location.pathname.startsWith('/reset')){
         navigate('/signin');        
       }
-      navigate('/signin');        
+      // navigate('/signin');        
     }
   },[]);
   return(

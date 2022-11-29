@@ -1,5 +1,6 @@
 import {React,useState, useContext} from 'react';
 import { Link,useNavigate } from 'react-router-dom';
+import './Login.css'
 
 import './Login.css';
 import M from 'materialize-css'
@@ -31,7 +32,7 @@ const Reset = () => {
                 } else {
                                         
                     M.toast({ html: data.message, classes: "#43a047 green darken-1" })
-                    navigate('/sigin');
+                    navigate(`/signin`);
                 }
             }).catch(err => {
                 console.log(err);
@@ -39,16 +40,18 @@ const Reset = () => {
     }
     return (
         <div>
-            <div className="mycard ">
-                <div className="card auth-card input-field">
-                    <h2>Instagram</h2>
+            <div className="My-container ">
+                <div className="Logincard">
+                <span className='brand-logo'>Instagram</span>
+                 <label>Email</label>
                     <input
+                        id='inputTxt'
                         type="email"
-                        placeholder="email"
+                        placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                    <button className="btn waves-effect #64b5f6 blue darken-1"
+                    <button className="LoginBtn"
                         onClick={() => PostData()}>
                         Reset Password
                     </button>

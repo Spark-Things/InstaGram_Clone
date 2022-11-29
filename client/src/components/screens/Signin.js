@@ -56,7 +56,7 @@ const Signin = () => {
              value={password} onChange={(e) => setPassword(e.target.value)} />
          </div>
 
-             <span className='Fptxt'>Forgot Password ?</span>
+         <Link to="/reset"> <span className='Fptxt'>Forgot Password ?</span> </Link>
 
 
             <button className='LoginBtn' onClick={() =>PostData()}>Signin</button><br/><br/>

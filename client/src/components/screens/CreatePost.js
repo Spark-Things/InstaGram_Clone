@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 // import './CreatePost.css';
 
 const CreatePost = () => {
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [image, setImage] = useState();

@@ -36,7 +36,7 @@ const Home = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         const newData = data.map((item) => {
           if (item._id === result._id) {
             return result;
@@ -149,7 +149,7 @@ const Home = () => {
                     <div className="Post-top_Section">
                       {item.postedBy ? (
                         <>
-                          <img src={item.postedBy.pic} className="HpPic" />
+                          {item.postedBy ? <img src={item.postedBy.pic} className="HpPic" /> : <div>Loading</div> }
                           <span>
                             <Link
                               to={
@@ -158,7 +158,7 @@ const Home = () => {
                                   : "/profile"
                               }
                             >
-                              {item.postedBy.username
+                              {item.postedBy
                                 ? item.postedBy.username
                                 : item.postedBy.name}
                             </Link>
@@ -197,9 +197,7 @@ const Home = () => {
                         ) : (
                           <i
                             className="material-icons"
-                            onClick={() => {
-                              likePost(item._id);
-                            }}
+                            onClick={() => {likePost(item._id);}}
                           >
                             thumb_up
                           </i>
