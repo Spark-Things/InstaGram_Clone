@@ -32,8 +32,6 @@ const Routing=()=>{
      dispatch({type:"USER",payload:user});
       navigate('/');
     }else{
-      // console.log(location);
-      // console.log(" path nemdk "+location.pathname);
       if(!location.pathname.startsWith('/reset')){
         navigate('/signin');        
       }
