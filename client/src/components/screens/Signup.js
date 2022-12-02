@@ -24,7 +24,7 @@ const Signup = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.url);
+        // console.log(data.url);
         setUrl(data.url);
       })
       .catch((err) => {
